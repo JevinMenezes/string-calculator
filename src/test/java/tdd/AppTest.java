@@ -40,4 +40,11 @@ public class AppTest
         assertEquals(3, sc.add(numbersStr));
     }
 
+    @Test
+    public void testAdd4()
+    {
+        String numbersStr = "1,2,2,46,73,1,0,64,8";
+        assertEquals(197, sc.add(numbersStr));
+    }
+
 }
