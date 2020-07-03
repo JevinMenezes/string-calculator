@@ -19,4 +19,25 @@ public class AppTest
         assertEquals(0, sc.add(numbersStr));
     }
 
+    @Test
+    public void testAdd1()
+    {
+        String numbersStr = "0";
+        assertEquals(0, sc.add(numbersStr));
+    }
+
+    @Test
+    public void testAdd2()
+    {
+        String numbersStr = "1";
+        assertEquals(1, sc.add(numbersStr));
+    }
+
+    @Test
+    public void testAdd3()
+    {
+        String numbersStr = "1,2";
+        assertEquals(3, sc.add(numbersStr));
+    }
+
 }
