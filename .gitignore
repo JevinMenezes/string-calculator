@@ -1,0 +1,13 @@
+# Source files
+
+# Compiled class file
+*.class
+
+# Package Files
+
+# IDE related
+.settings
+.classpath
+.project
+.vscode
+/target/
