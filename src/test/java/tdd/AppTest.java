@@ -81,4 +81,11 @@ public class AppTest
         String numbersStr = "1,2,2,46,73,-1,0,64,8";
         assertEquals(196, sc.add(numbersStr));
     }
+        
+    @Test
+    public void testAdd10()
+    {
+        Integer[] numbers = {1,2,2,46,73,1,0,64,8};
+        assertEquals(197, sc.add(numbers));
+    }
 }
