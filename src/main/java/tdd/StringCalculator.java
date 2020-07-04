@@ -12,7 +12,8 @@ public class StringCalculator
             String[] numbersList = numbers.split(",");
             int result = 0;
             for(int i = 0; i < numbersList.length; i++) {
-                result = result + Integer.parseInt(numbersList[i]);
+                if (StringUtils.isNotBlank(numbersList[i]))
+                    result = result + Integer.parseInt(numbersList[i]);
             }
             return result;
         }
