@@ -61,4 +61,24 @@ public class AppTest
         assertEquals(197, sc.add(numbersStr));
     }
 
+    @Test
+    public void testAdd7()
+    {
+        String numbersStr = "1,2,a,2,46,73,1,0,64,8";
+        assertEquals(197, sc.add(numbersStr));
+    }
+    
+    @Test
+    public void testAdd8()
+    {
+        String numbersStr = "1,02,1.0,2,46.53,73.5995,1,0,64,8";
+        assertEquals(78, sc.add(numbersStr));
+    }
+    
+    @Test
+    public void testAdd9()
+    {
+        String numbersStr = "1,2,2,46,73,-1,0,64,8";
+        assertEquals(196, sc.add(numbersStr));
+    }
 }
