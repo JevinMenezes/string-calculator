@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -124,4 +125,11 @@ public class AppTest {
         Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
         assertTrue(exception.getMessage().contains("negatives not allowed : -1,-8"));
     }
+
+    @AfterAll
+    public static void testAdd15()
+    {
+        assertEquals(15, sc.getCalledCount());
+    }
+    
 }

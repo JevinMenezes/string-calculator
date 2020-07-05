@@ -62,6 +62,7 @@ public class StringCalculator
      * For unknown amount of numbers
      */
     public int add(Integer... numbers) {
+        addInvokedCount++;
         int result = 0;
         for(Integer number : numbers) {
             result += number;
