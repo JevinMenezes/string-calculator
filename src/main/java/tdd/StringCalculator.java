@@ -8,7 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator 
 {
+    private static int addInvokedCount = 0;
+
     public int add(String numbers) throws NumberFormatException{
+        addInvokedCount++;
         List<String> delimiter = Arrays.asList(","); //default delimiter
         String negativesNotAllowedMsg = "negatives not allowed : ";
         Boolean multipleNegatives = false;
@@ -38,13 +41,12 @@ public class StringCalculator
                         negativesNotAllowedMsg += numbersList[i];
                         multipleNegatives = true;
                     }
-
                 }
                     
-
                 if (StringUtils.isNumeric(numbersList[i]))
                     result += Integer.parseInt(numbersList[i]);
             }
+
             if(negativesNotAllowedMsg.equalsIgnoreCase("negatives not allowed : ")) {
                 return result;
             }
@@ -64,6 +66,15 @@ public class StringCalculator
         for(Integer number : numbers) {
             result += number;
         }
+        return result;
+    }
+
+    /**
+     * @return number of times add method was invoked
+     */
+    public int getCalledCount() {
+        int result = addInvokedCount;
+        addInvokedCount = 0;
         return result;
     }
 
