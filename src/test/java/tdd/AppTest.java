@@ -114,6 +114,14 @@ public class AppTest {
     {
         String numbersStr = "1,2,2,46,73,-1,0,64,8";
         Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
-        assertTrue(exception.getMessage().contains("negatives not allowed"));
+        assertTrue(exception.getMessage().contains("negatives not allowed : -1"));
+    }
+    
+    @Test
+    public void testAdd14()
+    {
+        String numbersStr = "1,2,2,46,73,-1,0,64,-8";
+        Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
+        assertTrue(exception.getMessage().contains("negatives not allowed : -1,-8"));
     }
 }
