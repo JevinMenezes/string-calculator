@@ -43,7 +43,7 @@ public class StringCalculator
                     }
                 }
                     
-                if (StringUtils.isNumeric(numbersList[i]))
+                if (StringUtils.isNumeric(numbersList[i]) && Integer.parseInt(numbersList[i]) <= 1000)
                     result += Integer.parseInt(numbersList[i]);
             }
 
