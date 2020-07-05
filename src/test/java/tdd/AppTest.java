@@ -95,4 +95,11 @@ public class AppTest
         String numbersStr = "1\n2,3";
         assertEquals(6, sc.add(numbersStr));
     }
+
+    @Test
+    public void testAdd12()
+    {
+        String numbersStr = "//;\n1;2";
+        assertEquals(3, sc.add(numbersStr));
+    }
 }
