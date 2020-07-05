@@ -1,16 +1,19 @@
 package tdd;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-public class AppTest 
-{
-    StringCalculator sc = null;
+public class AppTest {
+    static StringCalculator sc = null;
 
-    @Before
-    public void setUp() {sc = new StringCalculator();}
+    @BeforeAll
+    public static void setUp() {
+        sc = new StringCalculator();
+    }
 
     @Test
     public void testAdd()
@@ -65,21 +68,24 @@ public class AppTest
     public void testAdd7()
     {
         String numbersStr = "1,2,a,2,46,73,1,0,64,8";
-        assertEquals(197, sc.add(numbersStr));
+        Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
+        assertTrue(exception.getMessage().contains("For input string: \"a\""));
     }
     
     @Test
     public void testAdd8()
     {
         String numbersStr = "1,02,1.0,2,46.53,73.5995,1,0,64,8";
-        assertEquals(78, sc.add(numbersStr));
+        Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
+        assertTrue(exception.getMessage().contains("For input string: \"1.0\""));
     }
     
     @Test
     public void testAdd9()
     {
         String numbersStr = "1,2,2,46,73,-1,0,64,8";
-        assertEquals(196, sc.add(numbersStr));
+        Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
+        assertTrue(exception.getMessage().contains("negatives not allowed"));
     }
         
     @Test
@@ -101,5 +107,13 @@ public class AppTest
     {
         String numbersStr = "//;\n1;2";
         assertEquals(3, sc.add(numbersStr));
+    }
+
+    @Test
+    public void testAdd13()
+    {
+        String numbersStr = "1,2,2,46,73,-1,0,64,8";
+        Throwable exception = assertThrows(NumberFormatException.class, () -> sc.add(numbersStr));
+        assertTrue(exception.getMessage().contains("negatives not allowed"));
     }
 }

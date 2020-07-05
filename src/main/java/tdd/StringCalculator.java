@@ -8,8 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator 
 {
-    public int add(String numbers) {
+    public int add(String numbers) throws NumberFormatException{
         List<String> delimiter = Arrays.asList(","); //default delimiter
+        String negativesNotAllowedMsg = "negatives not allowed : ";
         if(numbers.startsWith("//")){
             String delimiters = numbers.split("\n")[0].replace("//","");
             delimiter = new ArrayList<String>(0);
@@ -18,7 +19,6 @@ public class StringCalculator
             }
             numbers = numbers.split("\n")[1];
         }
-            
 
         if(numbers != null && numbers == "")
             return 0;
@@ -28,10 +28,19 @@ public class StringCalculator
             String[] numbersList = numbers.split(delimiter.get(0));
             int result = 0;
             for(int i = 0; i < numbersList.length; i++) {
+
+                if(StringUtils.isNotBlank(numbersList[i]) && Integer.parseInt(numbersList[i]) < 0)
+                    negativesNotAllowedMsg += numbersList[i];
+
                 if (StringUtils.isNumeric(numbersList[i]))
                     result += Integer.parseInt(numbersList[i]);
             }
-            return result;
+            if(negativesNotAllowedMsg.equalsIgnoreCase("negatives not allowed : ")) {
+                return result;
+            }
+            else {
+                throw new NumberFormatException(negativesNotAllowedMsg);
+            }
         }
         
         return -1;
