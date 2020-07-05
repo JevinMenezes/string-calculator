@@ -9,11 +9,12 @@ public class StringCalculator
             return 0;
 
         if(StringUtils.isNotBlank(numbers)) {
+            numbers = numbers.replace("\n", ",");
             String[] numbersList = numbers.split(",");
             int result = 0;
             for(int i = 0; i < numbersList.length; i++) {
                 if (StringUtils.isNumeric(numbersList[i]))
-                    result = result + Integer.parseInt(numbersList[i]);
+                    result += Integer.parseInt(numbersList[i]);
             }
             return result;
         }
