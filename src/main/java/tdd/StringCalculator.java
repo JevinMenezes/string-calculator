@@ -12,15 +12,26 @@ public class StringCalculator
 
     public int add(String numbers) throws NumberFormatException{
         addInvokedCount++;
+
         List<String> delimiter = Arrays.asList(","); //default delimiter
+        
         String negativesNotAllowedMsg = "negatives not allowed : ";
         Boolean multipleNegatives = false;
+        
         if(numbers.startsWith("//")){
-            String delimiters = numbers.split("\n")[0].replace("//","");
             delimiter = new ArrayList<String>(0);
-            for(int c = 0; c < delimiters.length(); c++) {
-                delimiter.add(Character.toString(delimiters.charAt(c)));
+
+            String delimiters = numbers.split("\n")[0];
+            if(delimiters.startsWith("//")){
+                delimiters = delimiters.replace("//", "");
+                delimiter.add(0, delimiters);
             }
+            else{
+                for(int c = 0; c < delimiters.length(); c++) {
+                    delimiter.add(Character.toString(delimiters.charAt(c)));
+                }
+            }
+
             numbers = numbers.split("\n")[1];
         }
 
@@ -28,7 +39,7 @@ public class StringCalculator
             return 0;
 
         if(StringUtils.isNotBlank(numbers)) {
-            numbers = numbers.replace("\n", delimiter.get(0));
+            numbers = numbers.replace("\n", ",");
             String[] numbersList = numbers.split(delimiter.get(0));
             int result = 0;
             for(int i = 0; i < numbersList.length; i++) {

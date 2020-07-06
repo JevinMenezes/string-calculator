@@ -129,7 +129,7 @@ public class AppTest {
     @AfterAll
     public static void testAdd15()
     {
-        assertEquals(16, sc.getCalledCount());
+        assertEquals(17, sc.getCalledCount());
     }
 
     @Test
@@ -137,5 +137,12 @@ public class AppTest {
     {
         String numbersStr = "1,2,2,1001,46,73,1000,64";
         assertEquals(1188, sc.add(numbersStr));
+    }
+
+    @Test
+    public void testAdd17()
+    {
+        String numbersStr = "//[***]\n1***2***3";
+        assertEquals(6, sc.add(numbersStr));
     }
 }
