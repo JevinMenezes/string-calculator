@@ -23,7 +23,7 @@ public class StringCalculator
 
             String delimiters = numbers.split("\n")[0];
             if(delimiters.startsWith("//")){
-                delimiters = delimiters.replace("//", "");
+                delimiters = delimiters.replace("//", "").replace("][", "|");
                 delimiter.add(0, delimiters);
             }
             else{
