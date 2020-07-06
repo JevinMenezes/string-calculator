@@ -129,7 +129,7 @@ public class AppTest {
     @AfterAll
     public static void testAdd15()
     {
-        assertEquals(18, sc.getCalledCount());
+        assertEquals(19, sc.getCalledCount());
     }
 
     @Test
@@ -152,5 +152,11 @@ public class AppTest {
         String numbersStr = "//[*][%]\n1*2%3";
         assertEquals(6, sc.add(numbersStr));
     }
-
+        
+    @Test
+    public void testAdd19()
+    {
+        String numbersStr = "//[**][%%]\n1**2%%3";
+        assertEquals(6, sc.add(numbersStr));
+    }
 }

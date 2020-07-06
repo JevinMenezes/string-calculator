@@ -1,9 +1,5 @@
 package tdd;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator 
@@ -13,23 +9,25 @@ public class StringCalculator
     public int add(String numbers) throws NumberFormatException{
         addInvokedCount++;
 
-        List<String> delimiter = Arrays.asList(","); //default delimiter
+        String delimiter = new String(","); //default delimiter
         
         String negativesNotAllowedMsg = "negatives not allowed : ";
         Boolean multipleNegatives = false;
         
         if(numbers.startsWith("//")){
-            delimiter = new ArrayList<String>(0);
+            delimiter = new String("");
 
             String delimiters = numbers.split("\n")[0];
             if(delimiters.startsWith("//")){
-                delimiters = delimiters.replace("//", "").replace("][", "|");
-                delimiter.add(0, delimiters);
+                delimiter = delimiters.replace("//", "").replace("][", "|");
             }
             else{
                 for(int c = 0; c < delimiters.length(); c++) {
-                    delimiter.add(Character.toString(delimiters.charAt(c)));
+                    if (c>=1)
+                        delimiter = delimiter + "|";
+                    delimiter = delimiter + delimiters.charAt(c);
                 }
+                delimiter = "[" + delimiter + "]";
             }
 
             numbers = numbers.split("\n")[1];
@@ -40,7 +38,7 @@ public class StringCalculator
 
         if(StringUtils.isNotBlank(numbers)) {
             numbers = numbers.replace("\n", ",");
-            String[] numbersList = numbers.split(delimiter.get(0));
+            String[] numbersList = numbers.split(delimiter);
             int result = 0;
             for(int i = 0; i < numbersList.length; i++) {
 
