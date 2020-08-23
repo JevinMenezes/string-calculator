@@ -1,9 +1,8 @@
-# Source files
-
 # Compiled class file
 *.class
 
-# Package Files
+# Misc Files
+*.pdf
 
 # IDE related
 .settings
